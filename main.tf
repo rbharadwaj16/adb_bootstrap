@@ -27,5 +27,5 @@ module "network" {
   source = "./modules/network"
   owner_custom   = var.owner_custom
   purpose_custom = var.purpose_custom
-  address_space  = var.address_space
+  address_space  = [var.address_space]
 }
