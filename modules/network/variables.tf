@@ -7,5 +7,6 @@ variable "purpose_custom" {
 }
 
 variable "address_space" {
+  type = list(string)
   description = "VNET CIDR Range"
 }
