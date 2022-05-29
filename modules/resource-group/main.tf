@@ -5,6 +5,6 @@ resource "azurerm_resource_group" "rg" {
   tags = {
     Owner = var.owner
     Client = var.org
-    Pupose = var.purpose
+    Purpose = var.purpose
   }
 }
