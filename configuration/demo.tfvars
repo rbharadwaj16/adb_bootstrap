@@ -9,4 +9,4 @@ location = "Australia East"
 org = "Servian"
 
 #Referenced in network module
-address_space = ["10.10.0.0/21"]
+address_space = [10.10.0.0/21]
