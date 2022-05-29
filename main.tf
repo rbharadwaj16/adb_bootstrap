@@ -20,6 +20,6 @@ module "rg" {
   location       = var.location
   org            = var.org
   owner_custom   = var.owner_custom
-  purpose_custom = var.owner_custom
+  purpose_custom = var.purpose_custom
 }
 
