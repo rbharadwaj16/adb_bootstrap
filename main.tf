@@ -18,7 +18,7 @@ module "rg" {
   owner          = var.owner
   purpose        = var.purpose
   location       = var.location
-  org            = var.Org
+  org            = var.org
   owner_custom   = var.owner_custom
   purpose_custom = var.owner_custom
 }
