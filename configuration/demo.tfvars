@@ -1,3 +1,6 @@
-owner = "raghav"
-purpose = "demo"
+owner = "raghavendra.bharadwaj@servian.com"
+purpose = "test"
 location = "Australia East"
+org = "Servian"
+owner_custom = "raghav"
+purpose_custom = "demo"
