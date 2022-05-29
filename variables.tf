@@ -21,3 +21,7 @@ variable "owner_custom" {
 variable "purpose_custom" {
     description = "Custom purpose"
 }
+
+variable "address_space" {
+  description = "VNET CIDR Range"
+}
