@@ -17,6 +17,5 @@ resource "azurerm_subnet" "subnet" {
   name = each.value["name"]
   address_prefixes = each.value["address_space"]
   resource_group_name = data.azurerm_resource_group.rg.name
-  location = data.azurerm_resource_group.rg.location
   virtual_network_name = azurerm_virtual_network.vnet.name
 }
