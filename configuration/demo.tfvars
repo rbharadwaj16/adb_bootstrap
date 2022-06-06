@@ -29,6 +29,6 @@ subnets = {
     
     subnet4 = {
         name = "AzureFirewallSubnet"
-        address_prefixes = ["10.10.1.192/26"]
+        address_space = ["10.10.1.192/26"]
         }
 }
