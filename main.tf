@@ -28,4 +28,5 @@ module "network" {
   owner_custom   = var.owner_custom
   purpose_custom = var.purpose_custom
   address_space  = var.address_space
+  depends_on = [module.rg]
 }
