@@ -34,3 +34,11 @@ variable "subnets" {
     address_space = list(string)
   })) 
 }
+
+variable "nsg" {
+  description = "A map of NSGs"
+  type = map(object({
+    name = string
+  }))
+  
+}

@@ -32,3 +32,13 @@ subnets = {
         address_space = ["10.10.1.192/26"]
         }
 }
+
+nsg = {
+    public_nsg = {
+        name = "public_nsg"
+        }
+
+    private_nsg = {
+        name = "private_nsg"
+        }
+    }
