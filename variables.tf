@@ -34,3 +34,8 @@ variable "subnets" {
     address_space = list(string)
   })) 
 }
+
+variable "vnet_id" {
+    description = "VNET ID to be passed for ADB"
+  
+}
