@@ -5,7 +5,7 @@ purpose_custom = "demo"
 #Referenced in resource-group module
 owner = "raghavendra.bharadwaj@servian.com"
 purpose = "test"
-location = "Australia East"
+location = "australiaeast"
 org = "Servian"
 
 #Referenced in network module
