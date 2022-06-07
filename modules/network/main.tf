@@ -10,3 +10,12 @@ resource "azurerm_virtual_network" "vnet" {
   address_space       = var.address_space
 
 }
+
+
+resource "azurerm_subnet" "subnet" {
+  for_each = var.subnets
+  name = each.value["name"]
+  address_prefixes = each.value["address_space"]
+  resource_group_name = data.azurerm_resource_group.rg.name
+  virtual_network_name = azurerm_virtual_network.vnet.name
+}
