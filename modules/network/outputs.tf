@@ -16,9 +16,9 @@ output "nsg_id" {
 }
 
 output "public_nsg_association" {
-    value = azurerm_subnet_network_security_group_association.nsg_association["subnet1"]
+    value = azurerm_subnet_network_security_group_association.nsg_association["subnet1"].id
 }
 
 output "private_nsg_association" {
-    value = azurerm_subnet_network_security_group_association.nsg_association["subnet2"]
+    value = azurerm_subnet_network_security_group_association.nsg_association["subnet2"].id
  }
