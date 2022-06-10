@@ -2,6 +2,22 @@ data "azurerm_resource_group" "rg" {
   name = format("rg-%s-%s", var.owner_custom, var.purpose_custom)
 }
 
+locals {
+  subnet_types = tomap({
+    for k, s in var.subnets : k => split("_", s.name)[0]
+  })
+  nsg_types = tomap({
+    for k, s in var.nsg : split("_", s.name)[0] => k
+  })
+}
+
+locals {
+  subnet_nsgs = {
+    for k, ty in local.subnet_types :
+    k => try(local.nsg_types[ty], null)
+  }
+}
+
 
 resource "azurerm_virtual_network" "vnet" {
   name                = format("%s-%s-vnet", var.owner_custom, var.purpose_custom)
@@ -28,8 +44,19 @@ resource "azurerm_network_security_group" "nsg" {
 }
 
 # resource "azurerm_subnet_network_security_group_association" "nsg_association" {
-#   for_each = var.nsg_association
-#   subnet_id = azurerm_subnet.subnet.id
-#   network_security_group_id = azurerm_network_security_group.nsg.id
-  
+#   subnet_id = #need help here
+#   network_security_group_id = #need help here
 # }
+
+resource "azurerm_subnet_network_security_group_association" "nsg_association" {
+  for_each = {
+    for subnet_key, nsg_key in local.subnet_nsgs : subnet_key => {
+      subnet_id = azurerm_subnet.subnet[subnet_key].id
+      nsg_id    = azurerm_network_security_group.nsg[nsg_key].id
+    }
+    if nsg_key != null
+  }
+
+  subnet_id                 = each.value.subnet_id
+  network_security_group_id = each.value.nsg_id
+}
