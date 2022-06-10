@@ -19,7 +19,7 @@ variable "subnets" {
   type = map(object({
     name = string
     address_space = list(string)
-    subnet_delegation = bool
+    subnet_delegation = string
   })) 
 }
 
