@@ -13,6 +13,8 @@ resource "azurerm_databricks_workspace" "adb" {
       virtual_network_id = var.vnet_id
       public_subnet_name = "public_subnet"
       private_subnet_name = "private_subnet"
+      public_subnet_network_security_group_association_id = var.public_subnet_network_security_group_association_id
+      public_subnet_network_security_group_association_id = var.private_subnet_network_security_group_association_id
     }
   
 }

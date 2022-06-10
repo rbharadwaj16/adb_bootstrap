@@ -40,4 +40,6 @@ module "network" {
    purpose_custom = var.purpose_custom
    vnet_id = module.network.vnet_id
    depends_on = [module.network]
+   public_subnet_network_security_group_association_id = module.network.public_nsg_association
+   public_subnet_network_security_group_association_id = module.network.private_nsg_association 
  }
