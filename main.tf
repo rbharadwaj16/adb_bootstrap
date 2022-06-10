@@ -34,10 +34,10 @@ module "network" {
   depends_on = [module.rg]
 }
 
-# module "adb" {
-#   source = "./modules/adb"
-#   owner_custom   = var.owner_custom
-#   purpose_custom = var.purpose_custom
-#   vnet_id = module.network.vnet_id
-#   depends_on = [module.network]
-# }
+ module "adb" {
+   source = "./modules/adb"
+   owner_custom   = var.owner_custom
+   purpose_custom = var.purpose_custom
+   vnet_id = module.network.vnet_id
+   depends_on = [module.network]
+ }

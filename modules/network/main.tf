@@ -43,10 +43,6 @@ resource "azurerm_network_security_group" "nsg" {
   resource_group_name = format("rg-%s-%s", var.owner_custom, var.purpose_custom)
 }
 
-# resource "azurerm_subnet_network_security_group_association" "nsg_association" {
-#   subnet_id = #need help here
-#   network_security_group_id = #need help here
-# }
 
 resource "azurerm_subnet_network_security_group_association" "nsg_association" {
   for_each = {
