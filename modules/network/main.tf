@@ -34,6 +34,21 @@ resource "azurerm_subnet" "subnet" {
   address_prefixes = each.value["address_space"]
   resource_group_name = format("rg-%s-%s", var.owner_custom, var.purpose_custom)
   virtual_network_name = azurerm_virtual_network.vnet.name
+
+  dynamic "delegation" {
+    for_each = each.value.subnet_delegation == "true" ? [1] : []
+    name = "adb_delegation"
+    service_delegation {
+      name = "Microsoft.Databricks/workspaces"
+      actions = [
+        "Microsoft.Network/virtualNetworks/subnets/join/action",
+        "Microsoft.Network/virtualNetworks/subnets/prepareNetworkPolicies/action",
+        "Microsoft.Network/virtualNetworks/subnets/unprepareNetworkPolicies/action",
+      ]
+
+    }
+  }
+
 }
 
 resource "azurerm_network_security_group" "nsg" {
