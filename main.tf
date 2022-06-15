@@ -51,3 +51,11 @@ module "adb" {
   private_subnet_network_security_group_association_id = module.network.private_nsg_association
   depends_on                                           = [module.network]
 }
+
+module "keyvault" {
+  source = "./modules/keyvault"
+  owner_custom                                         = var.owner_custom
+  purpose_custom                                       = var.purpose_custom
+  location                                             = var.location  
+  
+}
