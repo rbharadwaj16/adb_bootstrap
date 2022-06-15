@@ -20,7 +20,7 @@ provider "azurerm" {
 
 provider "databricks" {
   azure_workspace_resource_id = module.adb.adb_id
-  alias = "adb_workspace"
+  #alias = "adb_workspace"
 }
 module "rg" {
   source         = "./modules/resource-group"
@@ -45,15 +45,6 @@ module "network" {
 
 module "adb" {
   source                                               = "./modules/adb"
-  terraform {
-    required_providers {
-      databricks = {
-       source = "databrickslabs/databricks"
-       version = "=0.5.9"
-       #configuration_aliases = [databricks.adb_workspace]
-    }
-  }
-}
   owner_custom                                         = var.owner_custom
   purpose_custom                                       = var.purpose_custom
   location                                             = var.location

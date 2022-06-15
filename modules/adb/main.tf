@@ -1,3 +1,13 @@
+terraform {
+    required_providers {
+      databricks = {
+       source = "databrickslabs/databricks"
+       version = "=0.5.9"
+       #configuration_aliases = [databricks.adb_workspace]
+    }
+  }
+}
+
 locals {
   resource_group_name = format("rg-%s-%s", var.owner_custom, var.purpose_custom)
 }
