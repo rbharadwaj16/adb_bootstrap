@@ -9,7 +9,7 @@ terraform {
     databricks = {
       source = "databrickslabs/databricks"
       version = "=0.5.9"
-      configuration_aliases = [databricks.adb_workspace]
+      #configuration_aliases = [databricks.adb_workspace]
     }
   }
 }
@@ -45,9 +45,15 @@ module "network" {
 
 module "adb" {
   source                                               = "./modules/adb"
-  providers = {
-    databricks = databricks.adb_workspace
-   }
+  terraform {
+    required_providers {
+      databricks = {
+       source = "databrickslabs/databricks"
+       version = "=0.5.9"
+       #configuration_aliases = [databricks.adb_workspace]
+    }
+  }
+}
   owner_custom                                         = var.owner_custom
   purpose_custom                                       = var.purpose_custom
   location                                             = var.location
