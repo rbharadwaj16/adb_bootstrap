@@ -8,7 +8,7 @@ terraform {
     }
     databricks = {
       source = "databrickslabs/databricks"
-      configuration_aliases = [adb.provider]
+      configuration_aliases = [adb_provider]
     }
   }
 }
@@ -44,7 +44,7 @@ module "network" {
 module "adb" {
   source                                               = "./modules/adb"
   providers = {
-    databricks = databricks.adb.provider
+    databricks = databricks.adb_provider
    }
   owner_custom                                         = var.owner_custom
   purpose_custom                                       = var.purpose_custom
