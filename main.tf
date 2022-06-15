@@ -8,7 +8,7 @@ terraform {
     }
     databricks = {
       source = "databrickslabs/databricks"
-      alias = "adb"
+      configuration_aliases = "adb"
     }
   }
 }
