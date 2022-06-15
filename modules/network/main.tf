@@ -29,32 +29,32 @@ resource "azurerm_virtual_network" "vnet" {
 
 
 resource "azurerm_subnet" "subnet" {
-  for_each = var.subnets
-  name = each.value["name"]
-  address_prefixes = each.value["address_space"]
-  resource_group_name = local.resource_group_name
+  for_each             = var.subnets
+  name                 = each.value["name"]
+  address_prefixes     = each.value["address_space"]
+  resource_group_name  = local.resource_group_name
   virtual_network_name = azurerm_virtual_network.vnet.name
 
   dynamic "delegation" {
     for_each = each.value.subnet_delegation == "true" ? [1] : []
-    content{
+    content {
       name = "adb_delegation"
       service_delegation {
-      name = "Microsoft.Databricks/workspaces"
-      actions = [
-        "Microsoft.Network/virtualNetworks/subnets/join/action",
-        "Microsoft.Network/virtualNetworks/subnets/prepareNetworkPolicies/action",
-        "Microsoft.Network/virtualNetworks/subnets/unprepareNetworkPolicies/action",
-      ]
+        name = "Microsoft.Databricks/workspaces"
+        actions = [
+          "Microsoft.Network/virtualNetworks/subnets/join/action",
+          "Microsoft.Network/virtualNetworks/subnets/prepareNetworkPolicies/action",
+          "Microsoft.Network/virtualNetworks/subnets/unprepareNetworkPolicies/action",
+        ]
       }
     }
   }
 }
 
 resource "azurerm_network_security_group" "nsg" {
-  for_each = var.nsg
-  name = each.value["name"]
-  location = var.location
+  for_each            = var.nsg
+  name                = each.value["name"]
+  location            = var.location
   resource_group_name = local.resource_group_name
 }
 
