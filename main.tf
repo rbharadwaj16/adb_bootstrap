@@ -8,7 +8,8 @@ terraform {
     }
     databricks = {
       source = "databrickslabs/databricks"
-      configuration_aliases = [databricks.adb_provider]
+      version = "=0.5.9"
+      #configuration_aliases = [databricks.adb_provider]
     }
   }
 }
