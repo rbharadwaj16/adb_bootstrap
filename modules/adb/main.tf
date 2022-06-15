@@ -1,10 +1,10 @@
-data "azurerm_resource_group" "rg" {
-  name = format("rg-%s-%s", var.owner_custom, var.purpose_custom)
+locals {
+  resource_group_name = format("rg-%s-%s", var.owner_custom, var.purpose_custom)
 }
 
 resource "azurerm_databricks_workspace" "adb" {
     name = format("adb-%s-%s", var.owner_custom, var.purpose_custom)
-    resource_group_name = data.azurerm_resource_group.rg.name
+    resource_group_name = local.resource_group_name
     location = data.azurerm_resource_group.rg.location
     sku = "premium"
 
