@@ -9,7 +9,7 @@ terraform {
     databricks = {
       source = "databrickslabs/databricks"
       version = "=0.5.9"
-      #configuration_aliases = [databricks.adb_provider]
+      configuration_aliases = [databricks.adb_workspace]
     }
   }
 }
@@ -20,6 +20,7 @@ provider "azurerm" {
 
 provider "databricks" {
   azure_workspace_resource_id = module.adb.adb_id
+  alias = "adb_workspace"
 }
 module "rg" {
   source         = "./modules/resource-group"
@@ -44,9 +45,9 @@ module "network" {
 
 module "adb" {
   source                                               = "./modules/adb"
-  # providers = {
-  #   databricks = databricks.adb_provider
-  #  }
+  providers = {
+    databricks = databricks.adb_workspace
+   }
   owner_custom                                         = var.owner_custom
   purpose_custom                                       = var.purpose_custom
   location                                             = var.location
