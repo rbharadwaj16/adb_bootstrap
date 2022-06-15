@@ -44,7 +44,7 @@ module "network" {
 module "adb" {
   source                                               = "./modules/adb"
   providers = {
-    databricks = adb.provider
+    databricks = databricks.adb.provider
    }
   owner_custom                                         = var.owner_custom
   purpose_custom                                       = var.purpose_custom
