@@ -3,7 +3,6 @@ terraform {
       databricks = {
        source = "databrickslabs/databricks"
        version = "=0.5.9"
-       #configuration_aliases = [databricks.adb_workspace]
     }
   }
 }
