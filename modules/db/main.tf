@@ -35,7 +35,7 @@ resource "azurerm_mssql_server" "sql-server" {
 resource "azurerm_mssql_database" "sql-db" {
     name = format("sqldb-%s-%s", var.owner_custom, var.purpose_custom)
     server_id = azurerm_mssql_server.sql-server.id
-    sku_name = Basic    
+    sku_name = "Basic"    
 }
 
 resource "azurerm_private_dns_zone" "db-dns" {
