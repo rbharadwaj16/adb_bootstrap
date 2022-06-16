@@ -19,3 +19,11 @@ variable "public_subnet_network_security_group_association_id" {
 
 variable "private_subnet_network_security_group_association_id" {
 }
+
+variable "key_vault_id" {
+  
+}
+
+variable "key_vault_uri" {
+  
+}
