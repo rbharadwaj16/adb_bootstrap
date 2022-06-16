@@ -67,5 +67,6 @@ module "db" {
   purpose_custom                                       = var.purpose_custom
   location                                             = var.location 
   private_link_subnet = var.private_link_subnet
+  key_vault_id = module.keyvault.kv_id
   
 }
