@@ -19,6 +19,17 @@ data "databricks_spark_version" "latest_lts" {
   long_term_support = true
 }
 
+data "azurerm_key_vault_secret" "db-un" {
+  name         = "db-username"
+  key_vault_id = var.key_vault_id
+}
+
+
+data "azurerm_key_vault_secret" "db-pw" {
+  name         = "db-password"
+  key_vault_id = var.key_vault_id
+}
+
 resource "azurerm_databricks_workspace" "adb" {
   name                = format("adb-%s-%s", var.owner_custom, var.purpose_custom)
   resource_group_name = local.resource_group_name
@@ -45,13 +56,30 @@ resource "databricks_cluster" "shared_autoscaling" {
     min_workers = 1
     max_workers = 2
   }
-}
+  spark_conf = {
+    "spark.databricks.io.cache.enabled" : true,
+    "spark.hadoop.javax.jdo.option.ConnectionDriverName" : "com.microsoft.sqlserver.jdbc.SQLServerDriver",
+    "spark.hadoop.javax.jdo.option.ConnectionURL" : "jdbc:sqlserver://sqlserver-raghav-demo:1433;database=metastoredb"
+    "spark.databricks.delta.preview.enabled" : true,
+    "spark.hadoop.javax.jdo.option.ConnectionUserName" : azurerm_key_vault_secret.db-un.value,
+    "datanucleus.fixedDatastore" : false,
+    "spark.hadoop.javax.jdo.option.ConnectionPassword" : azurerm_key_vault_secret.db-pw.value,
+    "spark.driver.maxResultSize" : "32gb", 
+    "datanucleus.autoCreateSchema" : true,
+    "spark.sql.hive.metastore.jars" : "builtin",
+    "hive.metastore.schema.verification" : false,
+    "datanucleus.schema.autoCreateTables" : true,
+    "spark.sql.hive.metastore.version" : "2.3.9"
 
-resource "databricks_secret_scope" "kv" {
-  name = "keyvault-managed"
 
-  keyvault_metadata {
-    resource_id = var.key_vault_id
-    dns_name    = var.key_vault_uri
   }
 }
+
+# resource "databricks_secret_scope" "kv" {
+#   name = "keyvault-managed"
+
+#   keyvault_metadata {
+#     resource_id = var.key_vault_id
+#     dns_name    = var.key_vault_uri
+#   }
+# }

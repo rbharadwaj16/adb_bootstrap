@@ -33,7 +33,7 @@ resource "azurerm_mssql_server" "sql-server" {
 }
 
 resource "azurerm_mssql_database" "sql-db" {
-    name = format("sqldb-%s-%s", var.owner_custom, var.purpose_custom)
+    name = "metastoredb"
     server_id = azurerm_mssql_server.sql-server.id
     sku_name = "Basic"    
 }
