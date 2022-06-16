@@ -59,7 +59,7 @@ resource "databricks_cluster" "shared_autoscaling" {
   spark_conf = {
     "spark.databricks.io.cache.enabled" : true,
     "spark.hadoop.javax.jdo.option.ConnectionDriverName" : "com.microsoft.sqlserver.jdbc.SQLServerDriver",
-    "spark.hadoop.javax.jdo.option.ConnectionURL" : "jdbc:sqlserver://sqlserver-raghav-demo:1433;database=metastoredb"
+    "spark.hadoop.javax.jdo.option.ConnectionURL" : "jdbc:sqlserver://sqlserver-raghav-demo.database.windows.net:1433;database=metastoredb"
     "spark.databricks.delta.preview.enabled" : true,
     "spark.hadoop.javax.jdo.option.ConnectionUserName" : data.azurerm_key_vault_secret.db-un.value,
     "datanucleus.fixedDatastore" : false,
