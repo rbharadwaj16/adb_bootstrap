@@ -56,6 +56,16 @@ module "keyvault" {
   source = "./modules/keyvault"
   owner_custom                                         = var.owner_custom
   purpose_custom                                       = var.purpose_custom
-  location                                             = var.location  
+  location                                             = var.location
+  private_link_subnet = var.private_link_subnet    
+}
+
+
+module "db" {
+  source = "./modules/db"
+  owner_custom                                         = var.owner_custom
+  purpose_custom                                       = var.purpose_custom
+  location                                             = var.location 
+  private_link_subnet = var.private_link_subnet
   
 }

@@ -21,3 +21,28 @@ resource "azurerm_key_vault" "adb_kv" {
     ]
   }
 }
+
+resource "azurerm_private_dns_zone" "kv-dns" {
+  name                = "privatelink.vaultcore.azure.net"
+  resource_group_name = local.resource_group_name
+}
+
+
+resource "azurerm_private_endpoint" "kv-pe" {
+  name = format("kv-%s-%s-pe", var.owner_custom, var.purpose_custom)
+  resource_group_name          = local.resource_group_name
+  location                     = var.location
+  subnet_id = var.private_link_subnet
+
+    private_dns_zone_group {
+    name                 = "private-kv-dns-zone-group"
+    private_dns_zone_ids = [azurerm_private_dns_zone.kv-dns.id]
+  }
+
+  private_service_connection {
+    name = "kv-pe-connection"
+    private_connection_resource_id = azurerm_key_vault.adb_kv.id
+    is_manual_connection = false
+    subresource_names = ["vault"]
+  }
+}
