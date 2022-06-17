@@ -43,6 +43,13 @@ resource "azurerm_private_dns_zone" "db-dns" {
   resource_group_name = local.resource_group_name
 }
 
+resource "azurerm_private_dns_zone_virtual_network_link" "db-dns-link" {
+    name = format("db-dns-%s-%s-link", var.owner_custom, var.purpose_custom)
+    resource_group_name          = local.resource_group_name
+    private_dns_zone_name = azurerm_private_dns_zone.db-dns.name
+    virtual_network_id = var.vnet_id
+  
+}
 resource "azurerm_private_endpoint" "sql-server-pe" {
   name = format("sqlserver-%s-%s-pe", var.owner_custom, var.purpose_custom)
   resource_group_name          = local.resource_group_name

@@ -14,3 +14,7 @@ variable "private_link_subnet" {
     description = "ID of Private link Subnet"
   
 }
+
+variable "vnet_id" {
+  description = "Vnet ID for DNS integration"
+}
