@@ -7,7 +7,7 @@ terraform {
       version = "=2.94.0"
     }
     databricks = {
-      source = "databrickslabs/databricks"
+      source  = "databrickslabs/databricks"
       version = "=0.5.9"
     }
   }
@@ -49,5 +49,29 @@ module "adb" {
   vnet_id                                              = module.network.vnet_id
   public_subnet_network_security_group_association_id  = module.network.public_nsg_association
   private_subnet_network_security_group_association_id = module.network.private_nsg_association
+  key_vault_id                                         = module.keyvault.kv_id
+  key_vault_uri                                        = module.keyvault.kv_uri
   depends_on                                           = [module.network]
+
+}
+
+module "keyvault" {
+  source              = "./modules/keyvault"
+  owner_custom        = var.owner_custom
+  purpose_custom      = var.purpose_custom
+  location            = var.location
+  private_link_subnet = var.private_link_subnet
+  vnet_id             = module.network.vnet_id
+}
+
+
+module "db" {
+  source              = "./modules/db"
+  owner_custom        = var.owner_custom
+  purpose_custom      = var.purpose_custom
+  location            = var.location
+  private_link_subnet = var.private_link_subnet
+  key_vault_id        = module.keyvault.kv_id
+  vnet_id             = module.network.vnet_id
+
 }

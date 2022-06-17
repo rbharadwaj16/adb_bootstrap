@@ -43,3 +43,8 @@ variable "nsg" {
   }))
   
 }
+
+variable "private_link_subnet" {
+    description = "ID of Private link Subnet"
+  
+}
