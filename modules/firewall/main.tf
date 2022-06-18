@@ -93,3 +93,4 @@ resource "azurerm_firewall_network_rule_collection" "adb_network_rules" {
       destination_addresses = ["20.53.145.128/28"]
       protocols = ["https"]
   }
+}
