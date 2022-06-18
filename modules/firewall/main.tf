@@ -110,7 +110,7 @@ resource "azurerm_route_table" "adb-route-table" {
 
   route {
       name = "to-scc-relay"
-      address_prefix = "13.75.164.249/28"
+      address_prefix = "13.75.164.240/28"
       next_hop_type = "Internet"
   }
 }
