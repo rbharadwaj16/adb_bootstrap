@@ -95,3 +95,32 @@ resource "azurerm_firewall_network_rule_collection" "adb_network_rules" {
       protocols = ["Any"]
   }
 }
+
+resource "azurerm_route_table" "adb-route-table" {
+  name                          = "adb-route-table"
+  location                      = var.location
+  resource_group_name           = local.resource_group_name
+
+  route {
+    name           = "to-firewall"
+    address_prefix = "0.0.0.0/0"
+    next_hop_type  = "VirtualAppliance"
+    next_hop_in_ip_address = azurerm_firewall.adb-firewall.ip_configuration.private_ip_address
+  }
+
+  route {
+      name = "to-scc-relay"
+      address_prefix = "13.75.164.249"
+      next_hop_type = "Internet"
+  }
+}
+
+resource "azurerm_subnet_route_table_association" "adb-pubic-rt-assocation" {
+  subnet_id      = var.rt_public_subnet
+  route_table_id = azurerm_route_table.adb-route-table.id
+}
+
+resource "azurerm_subnet_route_table_association" "adb-private-rt-assocation" {
+  subnet_id      = var.rt_private_subnet
+  route_table_id = azurerm_route_table.adb-route-table.id
+}
