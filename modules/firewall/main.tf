@@ -68,8 +68,9 @@ resource "azurerm_firewall_application_rule_collection" "adb_application_rules" 
       port = "443"
       type = "Https"
     }
-  
+  }
 }
+
 
 resource "azurerm_firewall_network_rule_collection" "adb_network_rules" {
   name                = "adb-control-plane-network-rules"
