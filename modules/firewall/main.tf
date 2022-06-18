@@ -84,7 +84,7 @@ resource "azurerm_firewall_network_rule_collection" "adb_network_rules" {
       source_addresses = ["10.10.1.0/26","10.10.1.64/26"]
       destination_ports = ["443"]
       destination_addresses = ["13.75.218.172/32"]
-      protocols = ["https"]
+      protocols = ["Any"]
   }
 
   rule {
@@ -92,6 +92,6 @@ resource "azurerm_firewall_network_rule_collection" "adb_network_rules" {
       source_addresses = ["10.10.1.0/26","10.10.1.64/26"]
       destination_ports = ["443"]
       destination_addresses = ["20.53.145.128/28"]
-      protocols = ["https"]
+      protocols = ["Any"]
   }
 }
