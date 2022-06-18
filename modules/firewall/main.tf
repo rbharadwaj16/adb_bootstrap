@@ -105,7 +105,7 @@ resource "azurerm_route_table" "adb-route-table" {
     name           = "to-firewall"
     address_prefix = "0.0.0.0/0"
     next_hop_type  = "VirtualAppliance"
-    next_hop_in_ip_address = azurerm_firewall.adb-firewall.ip_configuration.private_ip_address
+    next_hop_in_ip_address = azurerm_firewall.adb-firewall.ip_configuration[0].private_ip_address
   }
 
   route {
