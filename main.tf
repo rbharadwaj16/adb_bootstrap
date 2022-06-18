@@ -81,4 +81,6 @@ module "firewall" {
   purpose_custom      = var.purpose_custom
   location            = var.location 
   fw_subnet_id = var.fw_subnet_id
+  rt_public_subnet = var.rt_public_subnet
+  rt_private_subnet = var.rt_private_subnet
 }
