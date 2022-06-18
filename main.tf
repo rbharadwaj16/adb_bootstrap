@@ -73,5 +73,12 @@ module "db" {
   private_link_subnet = var.private_link_subnet
   key_vault_id        = module.keyvault.kv_id
   vnet_id             = module.network.vnet_id
+}
 
+module "firewall" {
+  source = "./modules/firewall"
+  owner_custom        = var.owner_custom
+  purpose_custom      = var.purpose_custom
+  location            = var.location 
+  fw_subnet_id = var.fw_subnet_id
 }

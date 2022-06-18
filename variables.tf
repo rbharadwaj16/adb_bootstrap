@@ -48,3 +48,7 @@ variable "private_link_subnet" {
     description = "ID of Private link Subnet"
   
 }
+
+variable "fw_subnet_id" {
+  description = "ID of firewall Subnet"
+}
