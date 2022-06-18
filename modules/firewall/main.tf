@@ -4,7 +4,7 @@ locals {
 
 
 resource "azurerm_public_ip" "public-ip" {
-  name                = "format("public-ip-%s-%s", var.owner_custom, var.purpose_custom)"
+  name                = format("public-ip-%s-%s", var.owner_custom, var.purpose_custom)
   location            = var.location
   resource_group_name = local.resource_group_name
   allocation_method   = "Static"
@@ -12,7 +12,7 @@ resource "azurerm_public_ip" "public-ip" {
 }
 
 resource "azurerm_firewall" "adb-firewall" {
-  name                = "format("firewall-%s-%s", var.owner_custom, var.purpose_custom)"
+  name                = format("firewall-%s-%s", var.owner_custom, var.purpose_custom)
   location            = var.location
   resource_group_name = local.resource_group_name
 
