@@ -9,8 +9,8 @@ output "subnet_id" {
   
 }
 
-output "public_network_id" {
-    value = azurerm_subnet.subnet.id["public_subnet"]
+output "public_subnet_id" {
+    value = azurerm_subnet.subnet["subnet1"].id
   
 }
 output "nsg_id" {
