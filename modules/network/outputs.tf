@@ -9,6 +9,10 @@ output "subnet_id" {
   
 }
 
+output "public_network_id" {
+    value = azurerm_subnet.subnet.id["public_subnet"]
+  
+}
 output "nsg_id" {
     value = tomap({
         for k,s in azurerm_network_security_group.nsg: k => s.id
