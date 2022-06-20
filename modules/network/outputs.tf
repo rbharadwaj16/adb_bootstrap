@@ -9,6 +9,24 @@ output "subnet_id" {
   
 }
 
+output "public_subnet_id" {
+    value = azurerm_subnet.subnet["subnet1"].id
+  
+}
+
+output "private_subnet_id" {
+    value = azurerm_subnet.subnet["subnet2"].id
+
+}
+
+output "private_link_subnet" {
+    value = azurerm_subnet.subnet["subnet3"].id
+  
+}
+
+output "firewall_subnet" {
+  value = azurerm_subnet.subnet["subnet4"].id
+}
 output "nsg_id" {
     value = tomap({
         for k,s in azurerm_network_security_group.nsg: k => s.id
