@@ -1,3 +1,7 @@
+Azure Databricks Bootstrap
+
+
+Terraform folder hierarchy:
 ```
 .
 ├── README.md
