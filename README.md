@@ -1,7 +1,5 @@
-# adb_bootstrap
-
-Folder structure
-
+```
+.
 ├── README.md
 ├── configuration
 │   └── demo.tfvars
@@ -32,3 +30,4 @@ Folder structure
 │       ├── outputs.tf
 │       └── variables.tf
 └── variables.tf
+```
