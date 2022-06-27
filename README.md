@@ -1,7 +1,7 @@
-Azure Databricks Bootstrap
+## Azure Databricks Bootstrap
 
 
-Terraform folder hierarchy:
+#### Terraform folder hierarchy:
 ```
 .
 ├── README.md
